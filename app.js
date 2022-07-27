@@ -6,7 +6,7 @@ const mongoose = require('mongoose')
 const app = express();
  app.use(express.json());
 
- mongoose.connect('mongodb://localhost:27017/car-wash' , err => {
+ mongoose.connect('mongodb+srv://vsa1410:vsa141094@cluster0.zgp4mbh.mongodb.net/?retryWrites=true&w=majority/car-wash' , err => {
     if(err) return console.log(err)
 
     console.log("DB Connected")
