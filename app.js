@@ -76,7 +76,8 @@ const app = express();
  app.delete('/', async (req,res) =>{
     try{
         console.log(req.body)
-        await Model.findByIdAndRemove(req.body);
+        var id = mongoose.Types.ObjectId(req.body)
+        await Model.findByIdAndRemove(id);
         return res.status(200).json({ success: true, msg: 'Product Deleted' })}catch(err){
             console.log(err)
         }
