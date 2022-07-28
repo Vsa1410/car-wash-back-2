@@ -75,7 +75,8 @@ const app = express();
 
  app.delete('/', async (req,res) =>{
     try{
-        await Model.findByIdAndDelete(req.body);
+        console.log(req.body)
+        await Model.findByIdAndRemove(req.body);
         return res.status(200).json({ success: true, msg: 'Product Deleted' })}catch(err){
             console.log(err)
         }
