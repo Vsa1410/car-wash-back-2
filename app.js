@@ -9,6 +9,15 @@ const app = express();
  app.use(express.json());
  app.use(cors());
 
+ app.use((req, res, next) => {
+    res.setHeader("Access-Control-Allow-Origin","*");
+    res.header(
+      "Access-Control-Allow-Headers",
+      "Origin, X-Requested-With, Content-Type, Accept"
+    );
+    next();
+  });
+
 
  mongoose.connect('mongodb+srv://vsa1410:vsa141094@cluster0.zgp4mbh.mongodb.net/?retryWrites=true&w=majority/car-wash' , err => {
     if(err) return console.log(err)
