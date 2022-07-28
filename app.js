@@ -73,11 +73,11 @@ const app = express();
 
  })
 
- app.delete('/delete', async (req,res) =>{
+ app.delete('/:id', async (req,res) =>{
     try{
-        console.log(req.body)
-        var id = mongoose.Types.ObjectId(req.body)
-        await Model.findByIdAndRemove(id);
+        console.log(req.params.id)
+        
+        await Model.findByIdAndRemove(req.params.id);
         return res.status(200).json({ success: true, msg: 'Product Deleted' })}catch(err){
             console.log(err)
         }
