@@ -32,7 +32,7 @@ const app = express();
         required: true
     },
     date: {
-        type: String,
+        type: Date,
         required: true 
     },
     clientName: {
@@ -48,6 +48,45 @@ const app = express();
  })
  const Model = mongoose.model('service', serviceSchema)
  //model creation
+ const  userSchema = new mongoose.Schema({
+    name:{
+        type: String,
+        required: true,
+
+    },
+    value:{
+        type: String,
+        defaultValue:0
+    }
+
+ })
+
+ const User = mongoose.model("User", userSchema)
+
+ 
+
+ app.post('/addnewuser', async (req,res) =>{
+    const {name, value} = req.body;
+
+    const newUser = new User ({
+        name,
+        value
+     })
+    newUser.save()
+    .then(console.log("sucess"))
+
+ })
+
+ app.get('/receiveusers', async (req,res)=> {
+    User.find({ }, (err, users) =>{
+        if(err) return res.status(400).send(err)
+
+        res.send(users)
+    })
+ })
+
+
+
 
  app.get("/", (req,res) =>{
 
