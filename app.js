@@ -49,7 +49,7 @@ const app = express();
  const Model = mongoose.model('service', serviceSchema)
  //model creation
 
- app.get("/washes", (req,res) =>{
+ app.get("/", (req,res) =>{
 
     Model.find({ }, (err, books) =>{
         if(err) return res.status(400).send(err)
@@ -58,7 +58,7 @@ const app = express();
     })
  })
 
- app.post('/add', async (req,res) =>{
+ app.post('/', async (req,res) =>{
     const {name, date, clientName, servicePrice, servicePaid} = req.body;
 
     const newWash = new Model({
@@ -73,15 +73,15 @@ const app = express();
 
  })
 
- app.delete('/delete', async (req,res) =>{
+ app.delete('/', async (req,res) =>{
     try{
-        await Model.findByIdAndDelete(req.body.id);
+        await Model.findByIdAndDelete(req.body);
         return res.status(200).json({ success: true, msg: 'Product Deleted' })}catch(err){
             console.log(err)
         }
         })
 
- app.listen(process.env.PORT || 3000, function(){
+ app.listen(process.env.PORT || 3001, function(){
     console.log("Express server listening on port %d in %s mode", this.address().port, app.settings.env);
   });
     
