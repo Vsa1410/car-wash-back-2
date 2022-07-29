@@ -86,12 +86,13 @@ const app = express();
 
  app.get("/", (req,res) =>{
 
-    Model.find({ }, (err, books) =>{
-        if(err) return res.status(400).send(err)
-
-        res.send(books)
+    Model.find({ })
+    .populate("name")
+    .then(res.status(400).send(err))
+    .catch(error=>console.log(error))
+        
     })
- })
+ 
 
  app.post('/add', async (req,res) =>{
     const {name, date, clientName, servicePrice, servicePaid} = req.body;
@@ -106,12 +107,7 @@ const app = express();
         servicePrice, 
         servicePaid
     })
-    Model.findOne(req.body.name).populate("user").exec((err, result) => {
-        if(err){
-            return  res.json({error :  err})
-        }
-        res.json({result :  result})
-        });
+    
     newWash.save()
     .then(console.log("sucess"))
 
