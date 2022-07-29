@@ -25,7 +25,7 @@ const app = express();
  
  //model creation
  const  userSchema = new mongoose.Schema({
-    name:{
+    userName:{
         type: String,
         required: true,
 
@@ -40,7 +40,7 @@ const app = express();
  const User = mongoose.model("user", userSchema)
 
  const serviceSchema = new mongoose.Schema({
-    name: {
+    serviceName: {
         type: mongoose.Schema.Types.ObjectId,
         ref: "user"
     },
@@ -65,7 +65,7 @@ const app = express();
     const {name, value} = req.body;
 
     const newUser = new User ({
-        name,
+        userName,
         value
      })
     newUser.save()
@@ -88,7 +88,7 @@ const app = express();
 
     Model
     .find({})
-    .populate('name')
+    .populate('userName')
     .exec(function(err, users) {
         if(err) console.log(err);
         //this will log all of the users with each of their posts 
@@ -104,7 +104,7 @@ const app = express();
     
 
     const newWash = new Model({
-        name, 
+        serviceName, 
         date, 
         clientName, 
         servicePrice, 
