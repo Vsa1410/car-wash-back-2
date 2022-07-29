@@ -86,12 +86,15 @@ const app = express();
 
  app.get("/", (req,res) =>{
 
-    Model.find({})
-    .populate("name")
-    .then(res.status(400))
-    .catch(error=>console.log(error))
-        
-    })
+    Model
+    .find({})
+    .populate('name')
+    .exec(function(err, users) {
+        if(err) console.log(err);
+        //this will log all of the users with each of their posts 
+        else send(users);
+    }) 
+
  
 
  app.post('/add', async (req,res) =>{
