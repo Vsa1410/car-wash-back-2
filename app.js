@@ -92,7 +92,7 @@ const app = express();
     .exec(function(err, users) {
         if(err) console.log(err);
         //this will log all of the users with each of their posts 
-        else send(users);
+        else res.send(users);
     }) 
 
 })
