@@ -106,7 +106,7 @@ const app = express();
         servicePrice, 
         servicePaid
     })
-    Model.find({}).populate("user").exec((err, result) => {
+    Model.findOne(req.body.name).populate("user").exec((err, result) => {
         if(err){
             return  res.json({error :  err})
         }
