@@ -26,10 +26,27 @@ const app = express();
     console.log("DB Connected")
  })
 
+ 
+ //model creation
+ const  userSchema = new mongoose.Schema({
+    name:{
+        type: String,
+        required: true,
+
+    },
+    value:{
+        type: String,
+        defaultValue:0
+    }
+
+ })
+
+ const User = mongoose.model("user", userSchema)
+
  const serviceSchema = new mongoose.Schema({
     name: {
-        type: String,
-        required: true
+        type: ObjectId,
+        ref: "user"
     },
     date: {
         type: String,
@@ -47,23 +64,6 @@ const app = express();
     }
  })
  const Model = mongoose.model('service', serviceSchema)
- //model creation
- const  userSchema = new mongoose.Schema({
-    name:{
-        type: String,
-        required: true,
-
-    },
-    value:{
-        type: String,
-        defaultValue:0
-    }
-
- })
-
- const User = mongoose.model("User", userSchema)
-
- 
 
  app.post('/addnewuser', async (req,res) =>{
     const {name, value} = req.body;
@@ -100,6 +100,9 @@ const app = express();
  app.post('/add', async (req,res) =>{
     const {name, date, clientName, servicePrice, servicePaid} = req.body;
 
+   
+    
+
     const newWash = new Model({
         name, 
         date, 
@@ -107,6 +110,12 @@ const app = express();
         servicePrice, 
         servicePaid
     })
+    Model.find({}).populate("user").exec((err, result) => {
+        if(err){
+            return  res.json({error :  err})
+        }
+        res.json({result :  result})
+        });
     newWash.save()
     .then(console.log("sucess"))
 
