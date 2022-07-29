@@ -97,7 +97,7 @@ const app = express();
     })
  })
 
- app.post('/', async (req,res) =>{
+ app.post('/add', async (req,res) =>{
     const {name, date, clientName, servicePrice, servicePaid} = req.body;
 
     const newWash = new Model({
