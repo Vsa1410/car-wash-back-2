@@ -95,7 +95,7 @@ const app = express();
         else send(users);
     }) 
 
- 
+})
 
  app.post('/add', async (req,res) =>{
     const {name, date, clientName, servicePrice, servicePaid} = req.body;
