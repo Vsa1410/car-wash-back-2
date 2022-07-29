@@ -41,7 +41,7 @@ const app = express();
 
  const serviceSchema = new mongoose.Schema({
     name: {
-        type: ObjectId,
+        type: mongoose.Schema.Types.ObjectId,
         ref: "user"
     },
     date: {
