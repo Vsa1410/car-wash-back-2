@@ -88,7 +88,7 @@ const app = express();
 
     Model.find({ })
     .populate("name")
-    .then(res.status(400).send(err))
+    .then(res.status(400).send("sucess"))
     .catch(error=>console.log(error))
         
     })
