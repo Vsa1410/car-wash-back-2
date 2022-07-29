@@ -86,9 +86,9 @@ const app = express();
 
  app.get("/", (req,res) =>{
 
-    Model.find({ })
+    Model.find({ } (err,services))
     .populate("name")
-    .then(res.status(400).send("sucess"))
+    .then(res.status(400).send(services))
     .catch(error=>console.log(error))
         
     })
