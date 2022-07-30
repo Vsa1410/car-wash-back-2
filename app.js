@@ -88,7 +88,7 @@ const app = express();
 
     Model
     .find({})
-    .populate('userName')
+    .populate('serviceName')
     .exec(function(err, users) {
         if(err) console.log(err);
         //this will log all of the users with each of their posts 
