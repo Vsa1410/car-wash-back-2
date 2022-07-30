@@ -62,7 +62,7 @@ const app = express();
  const Model = mongoose.model('service', serviceSchema)
 
  app.post('/addnewuser', async (req,res) =>{
-    const {name, value} = req.body;
+    const {userName, value} = req.body;
 
     const newUser = new User ({
         userName,
@@ -98,7 +98,7 @@ const app = express();
 })
 
  app.post('/add', async (req,res) =>{
-    const {name, date, clientName, servicePrice, servicePaid} = req.body;
+    const {serviceName, date, clientName, servicePrice, servicePaid} = req.body;
 
    
     
