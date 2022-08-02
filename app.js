@@ -44,6 +44,10 @@ const app = express();
         type: mongoose.Schema.Types.ObjectId,
         ref: "user"
     },
+    serviceName2: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "user"
+    },
     date: {
         type: String,
         required: true 
@@ -89,6 +93,7 @@ const app = express();
     Model
     .find({})
     .populate('serviceName')
+    .populate('serviceName2')
     .exec(function(err, users) {
         if(err) console.log(err);
         //this will log all of the users with each of their posts 
@@ -98,13 +103,14 @@ const app = express();
 })
 
  app.post('/add', async (req,res) =>{
-    const {serviceName, date, clientName, servicePrice, servicePaid} = req.body;
+    const {serviceName,serviceName2, date, clientName, servicePrice, servicePaid} = req.body;
 
    
     
 
     const newWash = new Model({
-        serviceName, 
+        serviceName,
+        serviceName2, 
         date, 
         clientName, 
         servicePrice, 
@@ -125,6 +131,49 @@ const app = express();
             console.log(err)
         }
         })
+
+app.delete('/deleteuser/:id', async (req,res) =>{
+    try{
+        console.log(req.params.id)
+        
+        await User.findByIdAndRemove(req.params.id);
+        return res.status(200).json({ success: true, msg: 'Product Deleted' })}catch(err){
+            console.log(err)
+        }
+        })       
+
+app.patch('/:id', async(req,res)=>{
+    try {
+        
+        
+        
+        let doc = await User.findByIdAndUpdate(req.params.id,req.body);
+        
+        
+        console.log(doc)
+    } catch (error) {
+        console.log(error)
+    }
+
+    
+    
+})
+app.patch('/user2/:id', async(req,res)=>{
+    try {
+        
+        
+        
+        let doc = await User.findByIdAndUpdate(req.params.id,req.body);
+        
+        
+        console.log(doc)
+    } catch (error) {
+        console.log(error)
+    }
+
+    
+    
+})
 
  app.listen(process.env.PORT || 3001, function(){
     console.log("Express server listening on port %d in %s mode", this.address().port, app.settings.env);
