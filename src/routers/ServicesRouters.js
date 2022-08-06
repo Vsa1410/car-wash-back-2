@@ -1,4 +1,4 @@
-import Model from './src/Model/ServiceSchema';
+const Model  = require('../Model/ServiceSchema');
 const express = require('express')
 
 const router = express.Router();
@@ -47,7 +47,7 @@ router.post('/add', async (req,res) =>{
 })
 
 //Delete a service from database
-app.delete('/:id', async (req,res) =>{
+router.delete('/:id', async (req,res) =>{
     try{
         console.log(req.params.id)
         

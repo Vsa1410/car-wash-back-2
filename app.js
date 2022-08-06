@@ -1,18 +1,19 @@
 const express = require('express')
-import Model from './src/Model/ServiceSchema';
-import User from './src/Model/UserSchema';
 const userRoutes = require('./src/routers/UserRoutes')
 const serviceRoutes = require('./src/routers/ServicesRouters')
 
 const mongoose = require('mongoose')
 var cors = require('cors')
-
+const bodyParser = require('body-parser')
 
 
 
 
 const app = express();
- app.use(express.json());
+app.use(express.json());
+app.use(bodyParser.json())
+app.use(bodyParser.urlencoded({extended: false}));
+
 
 
  app.use(function(req, res, next) {

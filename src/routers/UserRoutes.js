@@ -1,4 +1,4 @@
-import User from './src/Model/UserSchema';
+const User = require( '../Model/UserSchema');
 
 const app = require('express');
 const router = app.Router();
@@ -25,7 +25,7 @@ router.post('/addnew', async (req,res) =>{
     })
  })
 //Delete a user from DataBase        
-app.delete('/:id', async (req,res) =>{
+router.delete('/:id', async (req,res) =>{
     try{
         console.log(req.params.id)
         
@@ -37,7 +37,7 @@ app.delete('/:id', async (req,res) =>{
 
 
 //Change the balance value of the serviceName1      
-app.patch('/:id', async(req,res)=>{
+router.patch('/:id', async(req,res)=>{
     try {
         
         
@@ -55,7 +55,7 @@ app.patch('/:id', async(req,res)=>{
 })
 
 //Change the balance value of the serviceName2
-app.patch('/user2/:id', async(req,res)=>{
+router.patch('/user2/:id', async(req,res)=>{
     try {
         
         
