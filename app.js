@@ -16,11 +16,16 @@ app.use(bodyParser.urlencoded({extended: false}));
 
 
 
- app.use(function(req, res, next) {
-    res.header("Access-Control-Allow-Origin", "*"); // update to match the domain you will make the request from
-    res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
-    next();
-  });
+
+	
+app.use(cors({
+    
+    origin:'*',
+    methods: ['GET','POST','DELETE','UPDATE','PUT','PATCH']
+    }
+));
+    
+
 
  mongoose.connect('mongodb+srv://vsa1410:vsa141094@cluster0.zgp4mbh.mongodb.net/?retryWrites=true&w=majority/car-wash' , err => {
     if(err) return console.log(err)
