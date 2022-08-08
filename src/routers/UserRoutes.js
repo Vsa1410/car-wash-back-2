@@ -1,7 +1,7 @@
 const User = require( '../Model/UserSchema');
 
-const app = require('express');
-const router = app.Router();
+const express = require('express');
+const router = express.Router();
 
 const cors = require('cors')
 
