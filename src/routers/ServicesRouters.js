@@ -2,8 +2,14 @@ const Model  = require('../Model/ServiceSchema');
 const express = require('express')
 
 const router = express.Router();
+const cors = require('cors')
 
-
+app.use(cors({
+    
+    origin:'*',
+    methods: ['GET','POST','DELETE','UPDATE','PUT','PATCH']
+    }
+));
 //Add a new user (washer) to the DataBase
 
 
