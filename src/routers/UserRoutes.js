@@ -3,6 +3,17 @@ const User = require( '../Model/UserSchema');
 const app = require('express');
 const router = app.Router();
 
+const cors = require('cors')
+
+const app = express()
+
+app.use(cors({
+    
+    origin:'*',
+    methods: ['GET','POST','DELETE','UPDATE','PUT','PATCH']
+    }
+));
+
 
 router.post('/addnew', async (req,res) =>{
     const {userName, value} = req.body;
